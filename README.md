@@ -1,6 +1,6 @@
-# Udacity Blockchain Project 3
+# Udacity Blockchain Project 4
 
-Build an API to get block info and add a new block to the chain.
+Build a Private Blockchain Notary Service
 
 ## Getting Started
 
@@ -54,10 +54,20 @@ You can use [Postman](https://www.getpostman.com/) to send GET or POST requests 
 
 All data is in JSON format, and expects body for POST to be in JSON as well.
 
-| Method  | Route          | Description                                    |
-| ------- | -------------- | ---------------------------------------------- |
-| GET     | /block/:index  | Get information of a single block.             |
-| POST    | /block         | Add a new block to the blockchain.             |
+Example of a star coordinate:
+
+```plain
+RA 13h 03m 33.35sec, Dec -49° 31’ 38.1” Mag 4.83 Cen
+```
+
+| Method  | Route                       | Description                                    |
+| ------- | --------------------------- | ---------------------------------------------- |
+| POST    | /requestValidation          | Initiates a request to validate a star.        |
+| POST    | /message-signature/validate | If valid, user can register a single star.     |
+| POST    | /block                      | Add a new block to the blockchain.             |
+| GET     | /stars/hash:[hash]          | Get information about start and its story.     |
+| GET     | /stars/address:[address]    | Get information about start and its story.     |
+| GET     | /block/:height              | Get information about start and its story.     |
 
 ### Requirements
 
