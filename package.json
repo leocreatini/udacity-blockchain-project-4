@@ -1,0 +1,20 @@
+{
+  "name": "udacity-blockchain-project-3",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "engines": {
+    "node": ">8"
+  },
+  "scripts": {
+    "start": "node node_modules/nodemon/bin/nodemon index.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "crypto-js": "^3.1.9-1",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.5"
+  }
+}
