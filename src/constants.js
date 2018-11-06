@@ -38,9 +38,9 @@ exports.SERVER_STARTED = "Things are happening on http://localhost:";
 exports.GENESIS_BLOCK_DATA = {
   address: '142BDCeSGbXjWKaAnYXbMpZ6sbrSAo3DpZ',
   star: {
-    ra: '16h 29m 1.0s',
-    dec: "-26° 29' 24.9",
-    story: '466f756e642073746172207573696e672068747470733a2f2f7777772e676f6f676c652e636f6d2f736b792f',
+    ra: '12h 24m 7.0s',
+    dec: "-22° 24' 24.9",
+    story: 'The sun is trying to kill me',
   },
 };
 
