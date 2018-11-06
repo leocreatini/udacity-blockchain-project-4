@@ -40,7 +40,7 @@ exports.GENESIS_BLOCK_DATA = {
   star: {
     ra: '12h 24m 7.0s',
     dec: "-22° 24' 24.9",
-    story: 'The sun is trying to kill me',
+    story: '\( ﾟヮﾟ)/ The sun is trying to kill me \_(-_-)_/',
   },
 };
 
