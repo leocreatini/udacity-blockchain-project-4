@@ -1,6 +1,7 @@
 // global imports
 const sha256 = require('crypto-js/sha256');
 const bitcoinMessage = require('bitcoinjs-message');
+const { BYTE_LIMIT } = require('./constants');
 
 // utils
 module.exports = {
@@ -11,7 +12,7 @@ module.exports = {
   
   decrypt: encoded => new Buffer(encoded, 'hex').toString(),
 
-  decryptStarStory: block => ({
+  decryptStarStory: block => block && block.body ? ({
     ...block,
     body: {
       ...block.body,
@@ -20,7 +21,17 @@ module.exports = {
         storyDecoded: new Buffer(block.body.star.story, 'hex').toString(),
       }
     }
-  }),
+  }) : block, // defensive coding
+
+  getMessageInRequestsFromAddress: address => (acc, msg) => {
+    // already found matching account, skip to end.
+    if (acc.length > 0) { return acc; }
+    // else, check address with one from this message
+    const msgData = msg.split(':');
+    if (msgData[0] === address) { return msg; }
+    // else, nothing was found, keep passing default empty string
+    return acc;
+  },
 
   // gets a UTC date for the current time. Returns a string.
   getTimestamp: () => new Date().getTime().toString().slice(0,-3),
@@ -43,6 +54,8 @@ module.exports = {
   checkString: str =>
     (str && typeof str === 'string' && str.length > 0),
 
-  checkStar: star =>
-    (star && typeof star === 'object' && star.dec && star.ra && star.story && star.story.length <= 250),
+  checkStar: star => (
+    star && typeof star === 'object' && star.dec && star.ra &&
+    star.story && Buffer.byteLength(star.story, 'utf8') <= BYTE_LIMIT // calculates byte size
+  ),
 };

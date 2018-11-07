@@ -13,11 +13,14 @@ const DEFAULT_CONFIG = {
 class App {
   // setup server instance
   constructor(config) {
-    this.config = config || DEFAULT_CONFIG;
-    this.initServer();
-    this.initMiddleware();
-    this.initRoutes();
-    this.start();
+    return (async() => {
+      this.config = config || DEFAULT_CONFIG;
+      this.initServer();
+      this.initMiddleware();
+      await this.initRoutes();
+      this.start();
+      return this;
+    })();
   }
 
   // make express app
@@ -32,8 +35,8 @@ class App {
   }
 
   // connect routes to app
-  initRoutes() {
-    require('./BlockController')(this.app);
+  async initRoutes() {
+    await require('./BlockController')(this.app);
 
     // setup default catch-all for bad requests
     this.app.get('*', (req, res) => res.json(BAD_REQUEST));

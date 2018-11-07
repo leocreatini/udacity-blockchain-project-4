@@ -6,7 +6,12 @@ exports.BAD_REQUEST = {
 
 exports.INVALID_NEW_BLOCK_REQUEST = {
   status: false,
-  message: 'Error: Invalid new block request. Ensure you have an approved validation request, and that your address and star data are correct.',
+  message: 'Error: Invalid new block request. Ensure you have an approved validation request and is under the 5 minute time limit.',
+};
+
+exports.INVALID_NEW_BLOCK_DATA = {
+  status: false,
+  message: 'Error: Invalid new block request. Ensure that your address and star data are correct.',
 };
 
 exports.INVALID_REQUEST = {
@@ -23,7 +28,7 @@ exports.ACCOUNT_NOT_FOUND = {
 exports.INVALID_SIGNATURE = {
   registerStar: false,
   status: false,
-  message: 'Error: Signature is invalid.',
+  message: 'Error: Signature is invalid. Duplicate attempts with an approved signature will result in error.',
 };
 
 exports.EXCEEDED_TIME_LIMIT = {
@@ -36,12 +41,11 @@ exports.SERVER_STARTED = "Things are happening on http://localhost:";
 
 // junk info, no security issue. glhf
 exports.GENESIS_BLOCK_DATA = {
-  address: '142BDCeSGbXjWKaAnYXbMpZ6sbrSAo3DpZ',
-  star: {
-    ra: '12h 24m 7.0s',
-    dec: "-22° 24' 24.9",
-    story: '\( ﾟヮﾟ)/ The sun is trying to kill me \_(-_-)_/',
-  },
+  // address: '',
 };
 
 exports.REQUEST_VALIDATION_TIMELIMIT = 300; // 300 seconds; 5 minutes
+
+exports.BYTE_LIMIT = 500; // size limit for star story
+
+exports.DB_LOCATION = './data';

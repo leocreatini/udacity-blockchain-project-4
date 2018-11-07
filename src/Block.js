@@ -2,7 +2,7 @@ const { getTimestamp } = require('./utils');
 
 // Class for a single block within the blockchain
 class Block {
-	constructor(data) {
+	constructor(data = {}) {
 		this.hash = '';
 		this.height = 0;
 		this.body = data;

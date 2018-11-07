@@ -1,5 +1,5 @@
 {
-  "name": "udacity-blockchain-project-3",
+  "name": "udacity-blockchain-project-4",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -7,15 +7,20 @@
     "node": ">8"
   },
   "scripts": {
-    "start": "node node_modules/nodemon/bin/nodemon index.js"
+    "clean": "node node_modules/rimraf/bin data/**",
+    "prestart:dev": "npm run clean",
+    "start:dev": "node index.js",
+    "start": "node index.js"
   },
   "dependencies": {
     "bitcoinjs-message": "^2.0.0",
     "body-parser": "^1.18.3",
     "crypto-js": "^3.1.9-1",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "level": "^4.0.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.5"
+    "nodemon": "^1.18.5",
+    "rimraf": "^2.6.2"
   }
 }
