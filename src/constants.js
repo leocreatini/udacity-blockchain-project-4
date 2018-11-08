@@ -9,9 +9,14 @@ exports.INVALID_NEW_BLOCK_REQUEST = {
   message: 'Error: Invalid new block request. Ensure you have an approved validation request and is under the 5 minute time limit.',
 };
 
-exports.INVALID_NEW_BLOCK_DATA = {
+exports.INVALID_ADDRESS = {
   status: false,
-  message: 'Error: Invalid new block request. Ensure that your address and star data are correct.',
+  message: 'Error: Invalid new block request. Ensure your address is correct.',
+};
+
+exports.INVALID_STORY = {
+  status: false,
+  message: 'Error: Invalid new block request. Ensure that your star data is correct, and that your star story is in ASCII.',
 };
 
 exports.INVALID_REQUEST = {
@@ -39,10 +44,7 @@ exports.EXCEEDED_TIME_LIMIT = {
 
 exports.SERVER_STARTED = "Things are happening on http://localhost:";
 
-// junk info, no security issue. glhf
-exports.GENESIS_BLOCK_DATA = {
-  // address: '',
-};
+exports.GENESIS_BLOCK_DATA = '[---GENESIS-BLOCK---]';
 
 exports.REQUEST_VALIDATION_TIMELIMIT = 300; // 300 seconds; 5 minutes
 

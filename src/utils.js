@@ -56,6 +56,7 @@ module.exports = {
 
   checkStar: star => (
     star && typeof star === 'object' && star.dec && star.ra &&
-    star.story && Buffer.byteLength(star.story, 'utf8') <= BYTE_LIMIT // calculates byte size
+    star.story && Buffer.byteLength(star.story, 'utf8') <= BYTE_LIMIT &&// calculates byte size
+    /[\x00-\x7F]/g.test(star.story)
   ),
 };

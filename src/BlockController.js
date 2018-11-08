@@ -9,6 +9,8 @@ const {
   ACCOUNT_NOT_FOUND,
   INVALID_SIGNATURE,
   EXCEEDED_TIME_LIMIT,
+  INVALID_ADDRESS,
+  INVALID_STORY,
 } = require('./constants');
 const {
   createHash,
@@ -18,8 +20,6 @@ const {
   getTimestampFromMessage,
   validateSignature,
   getMessageInRequestsFromAddress,
-  removeMessage,
-  removeAddress,
   checkAddress,
   checkString,
   checkRegistration,
@@ -220,24 +220,26 @@ class BlockController {
     this.app.post('/block', async (req, res) => {
       const { address, star } = req.body;
       // check to see if request data is good
-      if (checkAddress(address) && checkStar(star)) {
-        // check to see if validation is good
-        const mempool = await this.mempool.getFormattedData();
-        if (checkRegistration(mempool, address)) {
-          // remove message from mempool by its address
-          const message = mempool.reduce(getMessageInRequestsFromAddress(address), '');
-          await this.mempool.filterOut(message);
-          // create new block
-          const block = await this.createBlock({ address, star });
-          // add block to the chain
-          await this.addBlock(block);
-          // send back new block to requester
-          return res.json({ ...block });
-        }
-        return res.json(INVALID_NEW_BLOCK_REQUEST);
+      if (!checkAddress(address)) {
+        return res.json(INVALID_ADDRESS);
       }
-      // when data is junk or missing
-      return res.json(INVALID_NEW_BLOCK_DATA);
+      if (!checkStar(star)) {
+        return res.json(INVALID_STORY);
+      }
+      // check to see if validation is good
+      const mempool = await this.mempool.getFormattedData();
+      if (checkRegistration(mempool, address)) {
+        // remove message from mempool by its address
+        const message = mempool.reduce(getMessageInRequestsFromAddress(address), '');
+        await this.mempool.filterOut(message);
+        // create new block
+        const block = await this.createBlock({ address, star });
+        // add block to the chain
+        await this.addBlock(block);
+        // send back new block to requester
+        return res.json({ ...block });
+      }
+      return res.json(INVALID_NEW_BLOCK_REQUEST);
     });
   }
 
